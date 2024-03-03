@@ -13,8 +13,6 @@ const SignUpPage = () => {
   const authLoading = useSelector(selectAuthLoading);
   const authError = useSelector(selectAuthError);
 
-  console.log(authError);
-
   const dispatch = useDispatch();
 
   const handleSignup = data => {

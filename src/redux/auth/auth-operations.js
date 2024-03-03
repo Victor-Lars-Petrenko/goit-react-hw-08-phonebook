@@ -58,7 +58,6 @@ export const logout = createAsyncThunk(
     try {
       const { auth } = getState();
       const { data } = await logoutRequest(auth.token);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
