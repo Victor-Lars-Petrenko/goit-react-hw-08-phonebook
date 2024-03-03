@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import css from './Phonebook.module.css';
-import { ContactForm } from './ContactForm';
-import { Filter } from './Filter';
-import { ContactList } from './ContactList';
-import { fetchContacts } from '../../redux/contacts/contacts-operations';
-import { selectContacts } from '../../redux/contacts/contact-selectors';
+import ContactForm from './ContactForm';
+import Filter from './Filter';
+import ContactList from './ContactList';
 
+import { fetchContacts } from '../../redux/contacts/contacts-operations';
+import { selectContacts } from '../../redux/contacts/contacts-selectors';
 import { Bars } from 'react-loader-spinner';
+import css from './Phonebook.module.css';
 
 const Phonebook = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
+
 import { selectAuthUser } from '../../../redux/auth/auth-selectors';
-
 import { logout } from '../../../redux/auth/auth-operations';
-
 import css from './navBarUser.module.css';
 
 const NavBarUser = () => {

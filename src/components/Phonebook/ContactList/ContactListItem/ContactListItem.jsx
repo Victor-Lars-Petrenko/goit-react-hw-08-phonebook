@@ -1,13 +1,19 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
-import css from './ContactListItem.module.css';
 import { deleteContact } from '../../../../redux/contacts/contacts-operations';
+import { selectIsLoading } from '../../../../redux/contacts/contacts-selectors';
+import { Bars } from 'react-loader-spinner';
+import css from './ContactListItem.module.css';
 
-export const ContactListItem = ({ item: { id, name, number } }) => {
+const ContactListItem = ({ item: { id, name, number } }) => {
   const dispatch = useDispatch();
+  const loading = useSelector(selectIsLoading);
+  const [clicked, SetClicked] = useState(false);
 
   const handleClick = () => {
     dispatch(deleteContact(id));
+    SetClicked(true);
   };
 
   return (
@@ -21,8 +27,15 @@ export const ContactListItem = ({ item: { id, name, number } }) => {
         type="button"
         onClick={handleClick}
       >
-        Delete
+        {!clicked && 'Delete'}
+        {clicked && loading && (
+          <div className={css.loaderWrapper}>
+            <Bars visible={true} width="20" color="MidnightBlue" />
+          </div>
+        )}
       </button>
     </li>
   );
 };
+
+export default ContactListItem;

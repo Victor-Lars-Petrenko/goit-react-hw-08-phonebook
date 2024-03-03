@@ -5,11 +5,11 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 
-const HomePage = lazy(() => import('pages/HomePage/HomePage'));
-const Phonebook = lazy(() => import('pages/PhonebookPage/PhonebookPage'));
-const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
-const SignUpPage = lazy(() => import('pages/SignUpPage/SignUpPage'));
-const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
+const HomePage = lazy(() => import('pages/HomePage'));
+const Phonebook = lazy(() => import('pages/PhonebookPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const SignUpPage = lazy(() => import('pages/SignUpPage'));
+const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 const AppRoutes = () => {
   return (

@@ -1,16 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 
-import css from './ContactForm.module.css';
 import { toast } from 'react-toastify';
-
-import { selectContacts } from '../../../redux/contacts/contact-selectors';
+import { selectContacts } from '../../../redux/contacts/contacts-selectors';
 import { addContact } from '../../../redux/contacts/contacts-operations';
+import css from './ContactForm.module.css';
 
 const formNameId = nanoid();
 const fornNumberId = nanoid();
 
-export const ContactForm = () => {
+const ContactForm = () => {
   const dispatch = useDispatch();
   const items = useSelector(selectContacts);
 
@@ -67,3 +66,5 @@ export const ContactForm = () => {
     </form>
   );
 };
+
+export default ContactForm;

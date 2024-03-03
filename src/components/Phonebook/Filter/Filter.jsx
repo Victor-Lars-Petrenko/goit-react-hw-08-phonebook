@@ -6,7 +6,7 @@ import { setFilter } from '../../../redux/filter/filter-slice';
 
 const filterId = nanoid();
 
-export const Filter = () => {
+const Filter = () => {
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -29,3 +29,5 @@ export const Filter = () => {
     </div>
   );
 };
+
+export default Filter;

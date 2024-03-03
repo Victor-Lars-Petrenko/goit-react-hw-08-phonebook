@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import NavBarMenu from './NavBarMenu/NavBarMenu';
-import NavBarAuth from './NavBarAuth/NavBarAuth';
-import NavBarUser from './NavBarUser/NavBarUser';
+import NavBarMenu from './NavBarMenu';
+import NavBarAuth from './NavBarAuth';
+import NavBarUser from './NavBarUser';
 
 import { selectAuthIsLogin } from '../../redux/auth/auth-selectors';
 import { FaRegAddressBook } from 'react-icons/fa6';

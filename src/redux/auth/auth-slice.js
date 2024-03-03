@@ -9,6 +9,7 @@ const initialState = {
   isLoading: false,
   error: null,
 };
+
 const loadingReducer = state => {
   state.isLoading = true;
   state.error = null;
@@ -64,4 +65,5 @@ const authSlice = createSlice({
       .addCase(logout.rejected, errorReducer);
   },
 });
+
 export default authSlice.reducer;

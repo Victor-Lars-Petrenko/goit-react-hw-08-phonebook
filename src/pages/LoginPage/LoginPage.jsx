@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import LoginForm from 'components/LoginForm/LoginForm';
+import LoginForm from 'components/LoginForm';
 
 import { login } from '../../redux/auth/auth-operations';
 
@@ -8,7 +8,7 @@ import {
   selectAuthLoading,
   selectAuthError,
 } from '../../redux/auth/auth-selectors';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader';
 import { toast } from 'react-toastify';
 
 const LoginPage = () => {
