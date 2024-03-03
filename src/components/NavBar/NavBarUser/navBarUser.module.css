@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.userName {
+  color: Navy;
+  font-size: 24px;
+}
+
+.logoutBtn {
+  display: block;
+  width: 120px;
+  padding: 3px 4px;
+  font-size: 18px;
+  border-radius: 20px;
+  background-color: MidnightBlue;
+  color: snow;
+  transition: all 150ms ease-in-out 150ms;
+}
+.logoutBtn:hover {
+  background-color: snow;
+  color: MidnightBlue;
+}

@@ -1,0 +1,18 @@
+.commonWrapper {
+  width: 320px;
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+.errorWrapper {
+  color: Navy;
+  text-align: center;
+  margin-top: 24px;
+  font-size: 16px;
+}
+
+.loaderWrapper {
+  width: 40px;
+  margin: 0 auto;
+  margin-top: 24px;
+}

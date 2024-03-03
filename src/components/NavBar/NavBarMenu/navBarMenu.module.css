@@ -1,0 +1,16 @@
+.navBarMenu {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navLink {
+  text-decoration: none;
+  color: Navy;
+  font-size: 24px;
+  transition: all 150ms ease-in-out 150ms;
+}
+
+.navLink:global(.active) {
+  font-weight: bold;
+}

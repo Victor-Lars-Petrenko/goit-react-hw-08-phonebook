@@ -1,0 +1,28 @@
+.container {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: Navy;
+  font-weight: bold;
+  font-size: 48px;
+  text-align: center;
+}
+
+.link {
+  color: Navy;
+  font-weight: 400;
+  font-size: 48px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 150ms ease-in-out 150ms;
+}
+
+.link:hover {
+  font-weight: bold;
+}

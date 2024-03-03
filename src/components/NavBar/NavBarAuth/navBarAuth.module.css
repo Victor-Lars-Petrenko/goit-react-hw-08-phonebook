@@ -1,0 +1,21 @@
+.authWrapper {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: Navy;
+  font-size: 24px;
+  transition: all 150ms ease-in-out 150ms;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:global(.active) {
+  font-weight: bold;
+}
