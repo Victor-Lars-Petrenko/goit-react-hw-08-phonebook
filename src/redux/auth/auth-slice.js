@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import { signup, login, current, logout } from './auth-operations';
-
-import { pending, rejected } from '../../shared/functions/redux';
-
 const initialState = {
   user: {},
   token: '',
@@ -11,31 +7,41 @@ const initialState = {
   isLoading: false,
   error: null,
 };
+const loadingReducer = state => {
+  state.isLoading = true;
+  state.error = null;
+};
 
+const errorReducer = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(signup.pending, pending)
+      .addCase(signup.pending, loadingReducer)
       .addCase(signup.fulfilled, (state, { payload }) => {
+        console.log(state);
         state.user = payload.user;
+        console.log(state);
         state.token = payload.token;
         state.isLogin = true;
-        state.isLoading = false;
+        state.isLoading = true;
         state.error = null;
       })
-      .addCase(signup.rejected, rejected)
-      .addCase(login.pending, pending)
+      .addCase(signup.rejected, errorReducer)
+      .addCase(login.pending, loadingReducer)
       .addCase(login.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
         state.isLogin = true;
-        state.isLoading = false;
+        state.isLoading = true;
         state.error = null;
       })
-      .addCase(login.rejected, rejected)
-      .addCase(current.pending, pending)
+      .addCase(login.rejected, errorReducer)
+      .addCase(current.pending, loadingReducer)
       .addCase(current.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLogin = true;
@@ -46,15 +52,15 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.token = '';
       })
-      .addCase(logout.pending, pending)
-      .addCase(logout.fulfilled, state => {
+      .addCase(logout.pending, loadingReducer)
+      .addCase(logout.fulfilled, (state, { payload }) => {
         state.isLogin = false;
         state.isLoading = false;
-        state.user = {};
+
         state.token = '';
+        state.user = {};
       })
-      .addCase(logout.rejected, rejected);
+      .addCase(logout.rejected, errorReducer);
   },
 });
-
 export default authSlice.reducer;

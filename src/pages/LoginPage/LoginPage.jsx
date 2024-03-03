@@ -9,10 +9,15 @@ import {
   selectAuthError,
 } from '../../redux/auth/auth-selectors';
 import Loader from 'components/Loader/Loader';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const authLoading = useSelector(selectAuthLoading);
   const authError = useSelector(selectAuthError);
+
+  // if (authError) {
+  //   toast.error(authError);
+  // }
 
   const dispatch = useDispatch();
 
@@ -22,9 +27,9 @@ const LoginPage = () => {
 
   return (
     <div>
-      {authLoading && <Loader />}
+      {authLoading && !authError && <Loader />}
       <LoginForm onSubmit={handleLogin} />
-      {authError && <p style={{ color: 'red' }}>{authError}</p>}
+      {authError && toast.error(authError) && <></>}
     </div>
   );
 };

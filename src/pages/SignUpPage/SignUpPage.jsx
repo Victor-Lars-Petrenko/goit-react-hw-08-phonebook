@@ -25,7 +25,7 @@ const SignUpPage = () => {
     <div>
       {authLoading && <Loader />}
       <SignUpForm onSubmit={handleSignup} />
-      {authError && toast.error(authError)}
+      {authError && toast.error(authError) && <></>}
     </div>
   );
 };

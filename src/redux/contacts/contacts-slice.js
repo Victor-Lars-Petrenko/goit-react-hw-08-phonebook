@@ -1,46 +1,51 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import {
   fetchContacts,
-  deleteContact,
   addContact,
+  deleteContact,
 } from './contacts-operations';
-
-import { pending, rejected } from '../../shared/functions/redux';
-
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
 };
+const loadingReducer = state => {
+  state.isLoading = true;
+  state.error = null;
+};
 
-const contactsSlice = createSlice({
-  name: 'contacts',
+const errorReducer = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
+const contactSlice = createSlice({
+  name: 'contact',
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.pending, pending)
+      .addCase(fetchContacts.pending, loadingReducer)
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.items = payload;
-        state.error = null;
       })
-      .addCase(fetchContacts.rejected, rejected)
-      .addCase(deleteContact.pending, pending)
-      .addCase(deleteContact.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.items = state.items.filter(({ id }) => id !== payload);
-        state.error = null;
-      })
-      .addCase(deleteContact.rejected, rejected)
-      .addCase(addContact.pending, pending)
+      .addCase(fetchContacts.rejected, errorReducer)
+      .addCase(addContact.pending, loadingReducer)
       .addCase(addContact.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.items.push(payload);
-        state.error = null;
       })
-      .addCase(addContact.rejected, rejected);
+      .addCase(addContact.rejected, errorReducer)
+
+      .addCase(deleteContact.pending, loadingReducer)
+      .addCase(deleteContact.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.items = state.items.filter(({ id }) => id !== payload);
+      })
+      .addCase(deleteContact.rejected, errorReducer);
   },
 });
 
-export default contactsSlice.reducer;
+export const { addContactsLoading, addContactsSuccess, addContactsError } =
+  contactSlice.actions;
+
+export default contactSlice.reducer;

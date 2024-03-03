@@ -1,12 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { toast } from 'react-toastify';
 
 import {
   signupRequest,
   loginRequest,
   currentRequest,
   logoutRequest,
-} from '../../api/auth-api';
+} from 'api/auth';
 
 export const signup = createAsyncThunk(
   'auth/signup',

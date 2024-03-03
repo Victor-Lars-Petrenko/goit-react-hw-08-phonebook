@@ -12,7 +12,7 @@ const fornNumberId = nanoid();
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector(selectContacts);
+  const items = useSelector(selectContacts);
 
   const handleSubmit = e => {
     e.preventDefault();
