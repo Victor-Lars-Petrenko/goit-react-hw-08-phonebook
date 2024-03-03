@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[155],{1155:function(e,t,a){a.r(t),a.d(t,{default:function(){return r}});var n="HomePage_container__uNu-e",c="HomePage_title__UFLA3",o=a(3329),r=function(){return(0,o.jsx)("div",{className:n,children:(0,o.jsx)("h1",{className:c,children:"Phonebook welcome page"})})}}}]);
+//# sourceMappingURL=155.2d00986d.chunk.js.map
