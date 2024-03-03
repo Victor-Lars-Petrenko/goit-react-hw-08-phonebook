@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { deleteContact } from '../../../../redux/contacts/contacts-operations';
 import { selectIsLoading } from '../../../../redux/contacts/contacts-selectors';
@@ -9,12 +9,18 @@ import css from './ContactListItem.module.css';
 const ContactListItem = ({ item: { id, name, number } }) => {
   const dispatch = useDispatch();
   const loading = useSelector(selectIsLoading);
-  const [clicked, SetClicked] = useState(false);
+  const [IsClicked, SetIsClicked] = useState(false);
 
   const handleClick = () => {
     dispatch(deleteContact(id));
-    SetClicked(true);
+    SetIsClicked(true);
   };
+
+  useEffect(() => {
+    if (!loading) {
+      SetIsClicked(false);
+    }
+  }, [loading]);
 
   return (
     <li className={css.item}>
@@ -27,8 +33,8 @@ const ContactListItem = ({ item: { id, name, number } }) => {
         type="button"
         onClick={handleClick}
       >
-        {!clicked && 'Delete'}
-        {clicked && loading && (
+        {!IsClicked && 'Delete'}
+        {IsClicked && loading && (
           <div className={css.loaderWrapper}>
             <Bars visible={true} width="20" color="MidnightBlue" />
           </div>

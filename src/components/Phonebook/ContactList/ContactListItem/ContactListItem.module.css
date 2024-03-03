@@ -21,7 +21,8 @@
   opacity: 0.9;
   transition: all 150ms ease-in-out 150ms;
 }
-.button:hover {
+.button:hover,
+.button:active {
   background-color: snow;
   color: MidnightBlue;
 }

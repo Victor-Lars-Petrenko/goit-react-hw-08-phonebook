@@ -10,12 +10,12 @@ const initialState = {
   error: null,
 };
 
-const loadingReducer = state => {
+const pending = state => {
   state.isLoading = true;
   state.error = null;
 };
 
-const errorReducer = (state, { payload }) => {
+const rejected = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
 };
@@ -25,7 +25,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(signup.pending, loadingReducer)
+      .addCase(signup.pending, pending)
       .addCase(signup.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
@@ -33,8 +33,9 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(signup.rejected, errorReducer)
-      .addCase(login.pending, loadingReducer)
+      .addCase(signup.rejected, rejected)
+
+      .addCase(login.pending, pending)
       .addCase(login.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
@@ -42,8 +43,9 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(login.rejected, errorReducer)
-      .addCase(current.pending, loadingReducer)
+      .addCase(login.rejected, rejected)
+
+      .addCase(current.pending, pending)
       .addCase(current.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLogin = true;
@@ -54,15 +56,15 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.token = '';
       })
-      .addCase(logout.pending, loadingReducer)
+
+      .addCase(logout.pending, pending)
       .addCase(logout.fulfilled, (state, { payload }) => {
         state.isLogin = false;
         state.isLoading = false;
-
         state.token = '';
         state.user = {};
       })
-      .addCase(logout.rejected, errorReducer);
+      .addCase(logout.rejected, rejected);
   },
 });
 

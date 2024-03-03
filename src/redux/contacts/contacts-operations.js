@@ -1,5 +1,5 @@
-import * as contactsApi from '../../api/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as contactsApi from '../../api/contactsApi';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
@@ -13,6 +13,7 @@ export const fetchContacts = createAsyncThunk(
     }
   }
 );
+
 export const addContact = createAsyncThunk(
   'contacts/add',
   async (body, { rejectWithValue }) => {
@@ -23,28 +24,8 @@ export const addContact = createAsyncThunk(
       return rejectWithValue(error.message);
     }
   }
-  //   {
-  //     condition: ({ name, phone }, { getState }) => {
-  //       const { items } = getState();
-  //       const normalizedName = name.toLowerCase();
-  //       const normalizedNumber = phone.toLowerCase();
-
-  //       const dublicate = items.find(item => {
-  //         const normalizedCurrentName = item.name.toLowerCase();
-  //         const normalizedCurrentNumber = item.phone.toLowerCase();
-  //         return (
-  //           normalizedCurrentName === normalizedName ||
-  //           normalizedCurrentNumber === normalizedNumber
-  //         );
-  //       });
-
-  //       if (dublicate) {
-  //         alert(`Book with ${name} and ${phone} already in list`);
-  //         return false;
-  //       }
-  //     },
-  //   }
 );
+
 export const deleteContact = createAsyncThunk(
   'contacts/delete',
   async (id, { rejectWithValue }) => {

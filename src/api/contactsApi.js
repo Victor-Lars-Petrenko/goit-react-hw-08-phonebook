@@ -1,5 +1,5 @@
-import authInstance from './auth';
-import { setToken } from './auth';
+import authInstance from './authApi';
+import { setToken } from './authApi';
 export const requestFetchContacts = token => {
   setToken(token);
   try {

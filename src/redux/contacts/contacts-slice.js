@@ -1,47 +1,60 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import {
   fetchContacts,
   addContact,
   deleteContact,
 } from './contacts-operations';
+import { toast } from 'react-toastify';
+
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
 };
-const loadingReducer = state => {
+
+const pending = state => {
   state.isLoading = true;
   state.error = null;
 };
 
-const errorReducer = (state, { payload }) => {
+const rejected = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
 };
+
 const contactSlice = createSlice({
   name: 'contact',
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.pending, loadingReducer)
+      .addCase(fetchContacts.pending, pending)
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.items = payload;
       })
-      .addCase(fetchContacts.rejected, errorReducer)
-      .addCase(addContact.pending, loadingReducer)
+      .addCase(fetchContacts.rejected, rejected)
+
+      .addCase(addContact.pending, pending)
       .addCase(addContact.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.items.push(payload);
+        toast.success(`Contact with name ${payload.name} has been added`);
       })
-      .addCase(addContact.rejected, errorReducer)
+      .addCase(addContact.rejected, rejected)
 
-      .addCase(deleteContact.pending, loadingReducer)
+      .addCase(deleteContact.pending, pending)
       .addCase(deleteContact.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.items = state.items.filter(({ id }) => id !== payload);
+        const indexToDelete = state.items.filter(item => {
+          if (item.id === payload) {
+            toast.success(`Contact with name ${item.name} has been deleted`);
+          }
+          return item.id === payload;
+        });
+        state.items.splice(indexToDelete, 1);
       })
-      .addCase(deleteContact.rejected, errorReducer);
+      .addCase(deleteContact.rejected, rejected);
   },
 });
 

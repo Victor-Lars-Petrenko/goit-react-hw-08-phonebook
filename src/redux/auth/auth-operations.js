@@ -5,7 +5,7 @@ import {
   loginRequest,
   currentRequest,
   logoutRequest,
-} from 'api/auth';
+} from 'api/authApi';
 
 export const signup = createAsyncThunk(
   'auth/signup',
@@ -19,6 +19,7 @@ export const signup = createAsyncThunk(
     }
   }
 );
+
 export const login = createAsyncThunk(
   'auth/login',
 
@@ -31,6 +32,7 @@ export const login = createAsyncThunk(
     }
   }
 );
+
 export const current = createAsyncThunk(
   'auth/current',
   async (_, { rejectWithValue, getState }) => {
@@ -52,6 +54,7 @@ export const current = createAsyncThunk(
     },
   }
 );
+
 export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue, getState }) => {

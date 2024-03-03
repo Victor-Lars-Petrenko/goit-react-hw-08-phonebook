@@ -36,13 +36,22 @@
 .formButton {
   display: block;
   width: 100px;
+  position: relative;
+  height: 24px;
   padding: 4px;
   border-radius: 12px;
   background-color: MidnightBlue;
   color: snow;
   transition: all 150ms ease-in-out 150ms;
 }
-.formButton:hover {
+.formButton:hover,
+.formButton:active {
   background-color: snow;
   color: MidnightBlue;
+}
+
+.loaderWrapper {
+  position: absolute;
+  top: -27px;
+  left: 40px;
 }
